@@ -1,0 +1,22 @@
+.d-flex.flex-column.align-items-center.justify-content-center.min-h-95vh
+  %div.d-flex.flex-column.bg-white.mt-5.shadow-lg.w-50
+    %h2.text-center.text-white.py-4.bg-danger= t('appointment.label')
+    %div.d-flex.flex-column.mx-5.mb-2
+      .text-center.m-2
+        = image_tag @appointment.doctor.avatar_url(:medium), class: 'border cropped-circle avatar'
+      .m-2
+        %span.fw-bold= t('with_doubledots.doctor')
+        %span= @appointment.doctor.full_name
+      .m-2
+        %span.fw-bold= t('with_doubledots.category')
+        %span= @appointment.doctor.category.name
+      .m-2
+        %span.fw-bold= t('with_doubledots.datetime')
+        %span= @appointment.datetime.strftime(t('datetime.full_format'))
+      .m-2
+        %span.fw-bold= t('with_doubledots.status')
+        %span.badge{ class: @presenter.closed_class(@appointment) }= @presenter.status(@appointment)
+      - if @appointment.recommendation
+        .m-2
+          %span.fw-bold= t('with_doubledots.recommendation')
+          %p= @appointment.recommendation.text

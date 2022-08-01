@@ -1,0 +1,24 @@
+.d-flex.flex-column.align-items-center.justify-content-center.min-h-95vh
+  %div.d-flex.flex-column.bg-white.mt-5.shadow-lg.w-50
+    %div.d-flex.justify-content-center.bg-danger
+      %h2.text-center.text-white.py-4= t(:profile)
+      - if resource.is_a? User
+        %i.fa-solid.fa-user.ms-2.fsr-2.white.py-4
+      - else
+        %i.fa-solid.fa-user-doctor.ms-2.fsr-2.white.py-4
+    %div.d-flex.flex-column.align-items-center
+      - if resource.is_a? Doctor
+        = image_tag resource.avatar_url(:medium), class: 'mt-3 border cropped-circle avatar'
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), defaults: { wrapper_html: { class: 'field m-4' } }) do |f|
+        = f.input :phone, as: :tel, autofocus: true
+        = f.input :full_name
+        - if resource.is_a? Doctor
+          = f.input :avatar, as: :hidden, input_html: { value: resource.cached_avatar_data }
+          = f.input :avatar, as: :file, input_html: { class: 'ms-3' }
+        = f.input :password, hint: t('hints.leave_blank')
+        = f.input :password_confirmation
+        = f.input :current_password
+        .actions.d-flex.justify-content-center
+          = f.submit t(:update), class: 'btn btn-danger mb-4'
+  %div.d-flex.justify-content-center.bg-danger.mt-4.w-50.shadow-lg
+    = button_to t(:delete_account), registration_path(resource_name), { class: 'm-3 btn btn-light text-danger', method: :delete }

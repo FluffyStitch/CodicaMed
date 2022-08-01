@@ -1,0 +1,5 @@
+- flash.each do |name, msg|
+  .mt-60.position-absolute.w-100{id: "flash-#{name}"}
+    .alert.alert-dismissible.show.fade{role: "alert", class: "alert-#{name == 'alert' || name == 'error' ? 'warning' : 'success'}"}
+      = msg
+      %button.btn-close{ "aria-label" => "Close", "data-bs-dismiss" => "alert", type: :button }

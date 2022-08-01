@@ -1,0 +1,16 @@
+.d-flex.flex-column.align-items-center.justify-content-center.min-h-95vh
+  %div.d-flex.flex-column.bg-white.mt-5.shadow-lg.w-50
+    %h2.text-center.bg-danger.text-white.py-4= t('recommendation.write')
+    %div.d-flex.flex-column.align-items-center
+      = simple_form_for(@recommendation, url: doctors_appointment_recommendations_path, defaults: { wrapper_html: { class: 'field m-4' } }) do |f|
+        = hidden_field_tag :appointment_id, @recommendation.appointment.id
+        .field.m-4
+          = f.label t('with_doubledots.user'), required: false
+          %span.ms-2.fw-bold= @recommendation.appointment.user.full_name
+          -# = f.full_error :doctor, class: 'invalid-feedback d-block'
+        .field.m-4
+          = f.label t('with_doubledots.datetime'), required: false
+          %span.ms-2= @recommendation.appointment.datetime.strftime(t('datetime.full_format'))
+        = f.input :text, as: :text, input_html: { rows: 7, cols: 40 }
+        .actions.d-flex.justify-content-center
+          = f.submit t(:write), class: 'btn btn-danger mb-4'

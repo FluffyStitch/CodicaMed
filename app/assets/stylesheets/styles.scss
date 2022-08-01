@@ -1,0 +1,40 @@
+.chosen-category {
+  color: black;
+  --bs-secondary-rgb: 220, 53, 69;
+}
+
+.badge-position {
+  position: absolute;
+  margin-top: 2px;
+}
+
+.category-link:hover {
+  --bs-secondary-rgb: 220, 53, 69;
+}
+
+.divider {
+  background-color: white;
+  height: 2px
+}
+
+.borders {
+  border-bottom: #dc3545 solid 2px;
+  border-top: #dc3545 solid 2px;
+}
+
+.borders:hover {
+  border-color: white;
+}
+
+.cropped-circle {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 200px
+}
+
+.avatar-index {
+  width: 35px;
+}

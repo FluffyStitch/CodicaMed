@@ -1,0 +1,12 @@
+%div.d-flex.flex-column.justify-content-center.align-items-center.min-h-95vh
+  .d-flex.flex-column.bg-white.w-40.shadow-lg
+    = render partial: 'application/small_header'
+    %div.d-flex.flex-column.align-items-center
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), defaults: { wrapper_html: { class: 'field m-4' } }) do |f|
+        = f.input :phone, as: :tel, autofocus: true
+        = f.input :password
+        .actions.d-flex.justify-content-center
+          = f.submit t(:sign_in), class: 'btn btn-danger mb-4'
+  - if resource.is_a? User
+    %div.d-flex.justify-content-center.bg-danger.mt-3.shadow-lg
+      = link_to t(:not_have_account), new_registration_path(resource_name),  { class: 'm-3 text-white' }

@@ -1,0 +1,64 @@
+en:
+  doctor:
+    label: Doctor
+    label_of_many: Doctors
+    category: Category
+    avatar: Photo
+  user:
+    label: User
+    patient: Patient
+  appointment:
+    label: Appointment
+    label_of_many: Appointments
+    open: Open
+    closed: Closed
+    date: Date
+    time: Time
+    datetime: Date and time
+    status: Status
+    actions: Actions
+    make: Make an appointment
+  with_doubledots:
+    doctor: 'Doctor:'
+    category: "Doctor's category:"
+    user: 'User:'
+    datetime: 'Date and time:'
+    status: 'Status:'
+    recommendation: 'Recommendation:'
+  recommendation:
+    label: Recommendation
+    write: Write a recommendation
+  working_hours:
+    start: '8:00'
+    end: '19:50'
+  datetime:
+    hours_format: '%H:%M'
+    date_format: '%d.%m.%y'
+    full_format: '%d.%m.%y at %r'
+  codicamed: CodicaMed
+  profile: My Profile
+  all: All
+  full_name: Full Name
+  create: Create
+  update: Update
+  show: Show
+  write: Write
+  sign_up: Sign Up
+  sign_in: Sign In
+  have_account: Already have an account? Sign In
+  not_have_account: Don't have an account? Sign Up
+  choose_character: Choose your character
+  exit: Exit
+  delete_account: Delete my account
+  hints:
+    leave_blank: leave blank if you don't want to change it
+    min_characters: (%{min_length} characters minimum)
+  errors:
+    appointment:
+      max_count: already has max count of appointments
+      not_in_future: must be in future
+      weekends: is in non working days
+      not_working_hours: is in non working hours
+    doctor:
+      avatar: is too large (max is 5 MB)
+    access_denied: You are not authorized to access this page.
