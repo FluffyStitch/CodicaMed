@@ -13,6 +13,6 @@ class ImageUploader < Shrine
   end
 
   Attacher.default_url do
-    ActionController::Base.helpers.asset_path('/assets/default_doctor.png')
+    ActionController::Base.helpers.image_url('default_doctor.png')
   end
 end
