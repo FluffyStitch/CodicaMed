@@ -1,0 +1,13 @@
+%div.d-flex.justify-content-center.align-items-center.min-h-95vh
+  .d-flex.flex-column.bg-white.w-50.shadow-lg
+    = render partial: 'application/small_header'
+    %p.m-4.fsr-1and25.text-center= t(:choose_character)
+    %div.d-flex.justify-content-around.w-80.mx-auto
+      %div.text-center
+        = link_to new_doctor_session_path, method: :get do
+          %i.fa-solid.fa-user-doctor.red.fsr-5
+        %p.mt-2= t('doctor.label')
+      %div.text-center
+        = link_to new_user_session_path, method: :get do
+          %i.fa-solid.fa-user.red.fsr-5
+        %p.mt-2= t('user.patient')

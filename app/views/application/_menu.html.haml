@@ -1,0 +1,17 @@
+%div.position-fixed.bg-danger.d-flex.justify-content-center.h-100.w-8vh
+  %div.d-flex.flex-column.justify-content-between
+    %div.align-self-center.d-flex.flex-column.justify-content-center
+      %i.fa-solid.fa-star-of-life.mt-3.white.fsr-2and5
+      .divider.mt-3
+      - if resource.is_a?(Doctor)
+        = render partial: 'doctors/links'
+      - else
+        = render partial: 'users/links'
+    %div.align-self-end.d-flex.flex-column.justify-content-center.mx-auto
+      .divider.mb-2
+      %div.dropdown.mx-auto
+        %a#dropdownMenu.bg-danger{ type: :button, 'data-bs-toggle': 'dropdown', 'aria-expanded': false }
+          %i.fa-solid.fa-circle-user.mb-3.white.fsr-2and5.p-1.borders
+        %div.dropdown-menu{ 'aria-labelledby': 'dropdownMenu' }
+          %a.dropdown-item{ href: edit_registration_path(resource) }= t(:profile)
+          = button_to t(:exit), destroy_session_path(resource), { class: 'dropdown-item', method: :delete }

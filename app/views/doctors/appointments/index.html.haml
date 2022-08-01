@@ -1,0 +1,37 @@
+%div.d-flex.justify-content-center.min-h-95vh
+  %div.d-flex.flex-column.bg-white.mt-5.w-75.shadow-lg
+    %h2.text-center.bg-danger.text-white.py-4= t('appointment.label_of_many')
+    %div.d-flex.justify-content-start.mx-4.border-bottom
+      %div.mx-4.my-3
+        %a.grey.category-link{ href: doctors_appointments_path, class: @presenter.default_choosen_tab_class }
+          = t(:all)
+          %span.badge.bg-secondary.rounded-pill.ms-1.badge-position= @presenter.appointments_count(doctor: current_doctor)
+      %div.mx-4.my-3
+        %a.grey.category-link{ href: doctors_appointments_path(closed: false), class: @presenter.choosen_tab_class(false) }
+          = t('appointment.open')
+          %span.badge.bg-secondary.rounded-pill.ms-1.badge-position= @presenter.appointments_count(doctor: current_doctor, closed: false)
+      %div.mx-4.my-3
+        %a.grey.category-link{ href: doctors_appointments_path(closed: true), class: @presenter.choosen_tab_class(true) }
+          = t('appointment.closed')
+          %span.badge.bg-secondary.rounded-pill.ms-1.badge-position= @presenter.appointments_count(doctor: current_doctor, closed: true)
+    %table.table.table-hover.table-striped.align-self-center.w-90.mt-3
+      %thead.table-light
+        %tr.text-center
+          %th= t('user.label')
+          %th= t('appointment.date')
+          %th= t('appointment.time')
+          %th= t('appointment.status')
+          %th= t('recommendation.label')
+      %tbody
+        - @presenter.appointments.each do |appointment|
+          %tr.text-center
+            %th.fw-normal.text-start= appointment.user.full_name
+            %th.fw-normal= appointment.datetime.strftime(t('datetime.date_format'))
+            %th.fw-normal= appointment.datetime.strftime(t('datetime.hours_format'))
+            %th.fw-normal
+              %span.badge{ class: @presenter.closed_class(appointment) }= @presenter.status(appointment)
+            %th
+              - if appointment.recommendation
+                = link_to t(:show), doctors_appointment_path(appointment), class: 'badge bg-secondary'
+              - else
+                = link_to t(:write), new_doctors_appointment_recommendation_path(appointment), class: 'badge bg-primary'

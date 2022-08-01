@@ -1,0 +1,17 @@
+.d-flex.flex-column.align-items-center.justify-content-center.min-h-95vh
+  %div.d-flex.flex-column.bg-white.mt-5.shadow-lg.w-50
+    %h2.text-center.text-white.py-4.bg-danger= t('appointment.label')
+    %div.d-flex.flex-column.mx-5.mb-2
+      .m-2
+        %span.fw-bold= t('with_doubledots.user')
+        %span= @appointment.user.full_name
+      .m-2
+        %span.fw-bold= t('with_doubledots.datetime')
+        %span= @appointment.datetime.strftime(t('datetime.full_format'))
+      .m-2
+        %span.fw-bold= t('with_doubledots.status')
+        %span.badge{ class: @presenter.closed_class(@appointment) }= @presenter.status(@appointment)
+      - if @appointment.recommendation
+        .m-2
+          %span.fw-bold= t('with_doubledots.recommendation')
+          %p#recommendation_text= @appointment.recommendation.text

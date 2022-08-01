@@ -1,0 +1,27 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0.3
+  SuggestExtensions: false
+  Exclude:
+    - bin/*
+    - vendor/**/*
+    - db/*
+
+Layout/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - Gemfile
+    - config/**/*
+
+Rails/NotNullColumn:
+  Enabled: false

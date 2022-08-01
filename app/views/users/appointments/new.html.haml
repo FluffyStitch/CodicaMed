@@ -1,0 +1,15 @@
+.d-flex.flex-column.align-items-center.justify-content-center.min-h-95vh
+  %div.d-flex.flex-column.bg-white.mt-5.shadow-lg.w-50
+    %h2.text-center.bg-danger.text-white.py-4= t('appointment.make')
+    %div.d-flex.flex-column.align-items-center
+      .text-center.m-2
+        = image_tag @appointment.doctor.avatar_url(:medium), class: 'border cropped-circle avatar'
+      = simple_form_for(@appointment, url: users_appointments_path, defaults: { wrapper_html: { class: 'field m-4' } }) do |f|
+        = hidden_field_tag :doctor_id, @appointment.doctor.id
+        .field.m-4
+          = f.label t('with_doubledots.doctor'), required: false
+          %span.ms-2.fw-bold= @appointment.doctor.full_name
+          = f.full_error :doctor, class: 'invalid-feedback d-block'
+        = f.input :datetime, as: :datetime, html5: true, input_html: { min: Time.zone.now.strftime('%Y-%m-%d') }, label: t('appointment.datetime')
+        .actions.d-flex.justify-content-center
+          = f.submit t(:create), class: 'btn btn-danger mb-4'

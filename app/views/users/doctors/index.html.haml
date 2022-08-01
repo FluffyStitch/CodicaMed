@@ -1,0 +1,28 @@
+%div.d-flex.justify-content-center.min-h-95vh
+  %div.d-flex.flex-column.bg-white.mt-5.w-75.shadow-lg
+    %h2.text-center.bg-danger.text-white.py-4= t('doctor.label_of_many')
+    %div.d-flex.justify-content-start.mx-4.border-bottom
+      %div.mx-4.my-3
+        %a.grey.category-link{ href: users_doctors_path, class: @presenter.default_choosen_category_class }
+          = t(:all)
+          %span.badge.bg-secondary.rounded-pill.ms-1.badge-position= @presenter.doctors_count
+      - Category.all.each do |category|
+        %div.mx-4.my-3
+          %a.grey.category-link{ href: users_doctors_path(filter: category), class: @presenter.choosen_category_class(category) }
+            = category.name
+            %span.badge.bg-secondary.rounded-pill.ms-1.badge-position= @presenter.doctors_count(category: category)
+    %table.table.table-hover.table-striped.align-self-center.w-90.mt-3
+      %thead.table-light
+        %tr
+          %th
+          %th= t(:full_name)
+          %th= t('doctor.category')
+          %th
+      %tbody
+        - @presenter.doctors.each do |doctor|
+          %tr
+            %th= image_tag doctor.avatar_url(:small), class: 'border cropped-circle avatar-index'
+            %th.fw-normal= doctor.full_name
+            %th.fw-normal.w-30= doctor.category.name
+            %th.w-30
+              =link_to t('appointment.make'), new_users_appointment_path(doctor_id: doctor.id), class: 'btn btn-danger ' << @presenter.disabled_attr(doctor)
